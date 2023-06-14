@@ -3,10 +3,7 @@ package lt.socialmedia.socialmedia.controller;
 import lt.socialmedia.socialmedia.entity.Account;
 import lt.socialmedia.socialmedia.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,8 +13,18 @@ public class AccountController {
     @Autowired
     AccountService accountService;
 
+    @GetMapping
+    public List<Account> getAllAccounts(){
+        return this.accountService.getAllAccounts();
+    }
     @PostMapping
-    public List<Account> createAccount(Account account){
+    public List<Account> createAccount(@RequestBody  Account account){
         return this.accountService.createNewAccount(account);
     }
+    @GetMapping("/{id}")
+    public Account getAccountById(@PathVariable Long id){
+        return this.accountService.getAccountById(id);
+    }
+
+
 }
