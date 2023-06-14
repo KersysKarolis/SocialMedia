@@ -13,5 +13,14 @@ public class AccountService {
         this.accountList.add(account);
         return accountList;
     }
+    public List<Account> getAllAccounts(){
+        return this.accountList;
+    }
+    public Account getAccountById(Long id){
+        if(!(accountList.isEmpty())){
+            return this.accountList.stream().filter(account -> account.getId().equals(id)).findFirst().orElseThrow();
+        }
+        return null;
+    }
 
 }
